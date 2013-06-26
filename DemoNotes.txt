@@ -1,0 +1,55 @@
+Dynamisch und gefährlich?
+C# Dynamics in freier Wildbahn
+
+Seit der Einführung des "dynamic" Schlüsselworts in der 4.0-Version von C# streitet sich die .NET-Community zwischen "böse und gefährlich" und "praktisch und cool". Von ASP.NET ViewBags, ExpandoObjects, ElasticObjects, JSON Parser mit ExpandoObjects oder NancyFx Model Objekte bis Simple.Data und Oak's Gemini Bindings, dieses Vortrag wird böse dynamische Konstrukte unter die Lupe nehmen, die in unserer stark typisierten .NET-Welt nicht nur Sinn haben sondern von echtem Vorteil sind.
+
+http://www.herbstcampus.de/hc13/program/sessions.html#13
+
+------------------------------------------------------------
+
+An int, a var, an object and a (small) dynamic are in a boat... or in a function, yes in a function. That could be the begining of a nerd-joke but that's the better introduction I could come up with... and it kinds of fits.
+
+Dynamic Basics
+
+	http://www.hanselman.com/blog/C4AndTheDynamicKeywordWhirlwindTourAroundNET4AndVisualStudio2010Beta1.aspx
+
+Basics on the ExpandoObject
+
+	http://blogs.msdn.com/b/csharpfaq/archive/2009/10/01/dynamic-in-c-4-0-introducing-the-expandoobject.aspx
+
+	http://www.codeproject.com/Articles/62839/Adventures-with-C-4-0-dynamic-ExpandoObject-Elasti
+
+Unusual use of ExpandoObject
+
+	http://reedcopsey.com/2009/11/06/unusual-uses-of-expandoobject-in-c-4/
+
+ElasticObject
+
+	http://www.amazedsaint.com/2010/02/introducing-elasticobject-for-net-40.html?m=1
+
+Oak-Gemini
+
+	https://github.com/amirrajan/Oak/wiki/Gemini-First-Look
+	http://amirrajan.github.io/Oak/
+
+Simple.Data
+
+	https://github.com/markrendle/Simple.Data
+
+------------------------------------------------------------
+
+http://www.codeproject.com/Articles/593881/What-is-the-difference-between
+
+http://stackoverflow.com/questions/15338429/c-sharp-dynamic-type-gotcha
+
+http://stackoverflow.com/questions/13193799/performance-cost-of-using-dynamic-typing-in-net
+
+http://www.codetails.com/punitganshani/complete-guide-to-dynamic-keyword-in-c/20130330
+
+http://sinairv.wordpress.com/2012/07/23/an-example-for-c-dynamic-in-action/
+
+http://www.felienne.com/?p=698
+
+http://tech.collectedit.com/post/2012/08/20/Using-C-dynamic-objects-to-perform-runtime-text-templates.aspx
+
+http://counsellingbyabhi.blogspot.de/2013/03/difference-between-var-object-and.html
