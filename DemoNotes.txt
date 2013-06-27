@@ -74,9 +74,11 @@ Console.WriteLine(sampleObject.number); //Prints 10
 sampleObject.Increment(); //Call the function
 Console.WriteLine(sampleObject.number); //Prints 11
 
-In addition, the expando object can be passed as a parameter, be casted to an IDictionary<TKey, TValue> (and thus allows to remove members) and can emit PropertyChange notifications.
+Note how I used 'dynamic' to declare myExpandoObject. If I had used "ExpandoObject" or even "var", the object would then be statically typed and myExpandoObject.number would not compile anymore.
 
-The ViewBag used in ASP.NET MVC is very similar in behavior to the ExpandoObject. Also note how I used 'dynamic' to declare myExpandoObject. If I had used "ExpandoObject" or even "var", the object would then be statically typed and myExpandoObject.number would not compile anymore.
+The ViewBag used in ASP.NET MVC is very similar in behavior to the ExpandoObject. As a matter of fact, most of the time, the ExpandoObjectsare used as a property-bag, like a Wild-Dictionary<string, object> or Strange-Hashtable. Those usages can already be very interesting, for instance Alexandra Rusina[http://blogs.msdn.com/b/csharpfaq/archive/2009/10/01/dynamic-in-c-4-0-introducing-the-expandoobject.aspx] described how it can simplify access to XML documents.
+
+Additionally, the ExpandoObject also implements the INotifyPropertyChanged and can host events directly as properties.
 
 <h1>ElasticObject</h1>
 
