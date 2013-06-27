@@ -58,11 +58,29 @@ Let's digg deeper in those usages and structures.
 
 <h1>DynamicObject</h1>
 
-DynamicObject is the base class for all those behaviors. As described previously, a DynamicObject exposes members such as properties and methods at run time, instead of at compile time.
+DynamicObject is the base class for all those behaviors. It is defined in the namespace 'System.Dynamic'. As described previously, a DynamicObject exposes members at run time instead of at compile time. Among others, it has two important functions that you can override:
+
+* The TryGetMember method is called when a member of a dynamic class is requested and no arguments are specified. Ex: 'myDynamicObject.Property'.
+* The TryInvokeMember method is called when a member of a dynamic class is requested with arguments. Ex: 'myDynamicObject.Function()'.
 
 <h1>ExpandoObject</h1>
 
+The ExpandoObject is also a class of the System.Dynamic namespace and represents an object whose members can be dynamically added and removed at run time.
+
+dynamic myExpandoObject = new ExpandoObject();
+myExpandoObject.number = 10; //Add a property
+myExpandoObject.Increment = (Action)(() => { myExpandoObject.number++; }); //Add a function via a lambda expression
+Console.WriteLine(sampleObject.number); //Prints 10
+sampleObject.Increment(); //Call the function
+Console.WriteLine(sampleObject.number); //Prints 11
+
+In addition, the expando object can be passed as a parameter, be casted to an IDictionary<TKey, TValue> (and thus allows to remove members) and can emit PropertyChange notifications.
+
+The ViewBag used in ASP.NET MVC is very similar in behavior to the ExpandoObject. Also note how I used 'dynamic' to declare myExpandoObject. If I had used "ExpandoObject" or even "var", the object would then be statically typed and myExpandoObject.number would not compile anymore.
+
 <h1>ElasticObject</h1>
+
+
 
 <h1>Gemini</h1>
 
