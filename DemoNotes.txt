@@ -7,11 +7,11 @@ http://www.herbstcampus.de/hc13/program/sessions.html#13
 
 ------------------------------------------------------------
 
-<intro>I've heard more than once that hell will simply break loose when one use the C# keyword "dynamic". Another interpretation of the same rule says that god will kill a kitten for each usage... and if I'm not that scared of the first one... kittens... damn. To be honest, since its introduction in the 4th version of the .NET Framework, I tried to spare the lovely kittens... until last year. Since then, if those balls of fur do get in trouble when I use dynamics, I'm going to be in trouble with the PETA very soon.</intro>
+<intro>I've heard more than once that hell will simply break loose if somebody uses the C# keyword "dynamic". Another interpretation of the same rule says that god will kill a kitten for each usage... and if I'm not that scared of the first one... kittens... damn. To be honest, since its introduction (2009) in the 4th version of the .NET Framework, I tried to spare the lovely kittens... until last year. Since then, if those balls of fur really do get in trouble when I use dynamics ; well, I'm going to be in trouble with the PETA very soon.</intro>
 
-Let's backtrack a little bit. C# is a statically typed language, what's that dynamic I'm talking about?
+Let's backtrack a little bit. C# is a statically typed language, so what's that 'dynamic' I'm talking about?
 
-C# is indeed a statically typed language. The language expresses type restrictions that can be verified and validated at compile time. The following code does not compile. The compiler notices that the "++" operator cannot be applied to operands of type 'string' and throws an error:
+C# is indeed a statically typed language. The language expresses type restrictions that can be verified and validated at compile time. For example, the following code does not compile. The compiler notices that the "++" operator cannot be applied to operands of type 'string' and throws an error:
 
 string lang = "C#";
 lang++;
@@ -21,7 +21,7 @@ Similarly, unless we define such an extension function, the following will not c
 int zeAnswer = 42;
 zeAnswer.ToUpper();
 
-Now try replacing the 'string' and 'int' types with 'dynamic' and you should notice the compiler instantly smiling back at you with no errors to notify. With dynamic typing, the type-safety is determined at runtime. Thus, if the examples above compile, they will spectacularly crash once you try to execute them.
+Now try replacing the 'string' and 'int' types with 'dynamic' and you should notice the compiler instantly smiling back at you with no errors to notify. With dynamic typing, the type-safety is determined at runtime. Thus, if the examples above compile, they will also spectacularly crash once you try to execute them anyway.
 
 <h1>Why do we have a "dynamic" keyword in C# then?</h1>
 
@@ -30,7 +30,7 @@ Let's consider the following examples[scotthanselmansblogpost]:
 Calculator calc = GetCalculator();
 int sum = calc.Add(10, 20);
 
-What about using the type 'object' instead of Calulator? In this case, the compiler does not know that an "Add" function exists, thus cannot allow us to call it. We have to use reflection to get to the member and invoke it, using that quite nasty syntax below:
+What about using the type 'object' instead of Calulator? In this case, the compiler does not know that an "Add" function exists, thus cannot allow us to call it. We have to use reflection to get to the member and invoke it, using that way less clean syntax below:
 
 object calc = GetCalculator();
 Type calcType = calc.GetType();
@@ -44,28 +44,27 @@ int sum = calc.Add(10, 20);
 
 The Dynamic Language Runtime (DLC) basically allows other languages like IronPython or IronRuby to talk to the Common Language Runtime (CLR). This keyword was specifically introduced to enable that behavior.
 
-<h1>Difference while coding</h1>
-
-Additionally to losing the compile time type checks, using dynamics comes with another drawback (some might argue that it's actually an advantage): the compiler cannot infer what methods and properties you can use, and thus prevents the usage of a code completion tool like IntelliSense[].
+In addition to losing the compile time type checks, using dynamics comes with another drawback (some might argue that it's actually an advantage): the compiler cannot infer what methods and properties you can use, and thus prevents the usage of a code completion tool like IntelliSense[].
 
 <h1>So why bother?</h1>
 
 I know what you're thinking: this is neither new nor really exciting so why bother writing an article about it? And you would be right if it stopped there. Dynamics can be very useful in interoperability cases but the use of that naked 'dynamic' keyword doesn't make much sense outside those boundaries.
 
-Users of ASP.NET MVC experienced a first use of that dynamic power under the hood of the 'ViewBag'. Lately, some Frameworks or tools like 'Simple.Data' or 'Oak' started using dynamics publicly and extensively (poor kittens). So there seems to be something to it ; that's why.
+Users of ASP.NET MVC experienced a first use of that dynamic power under the hood of the 'ViewBag'. Lately, some Frameworks or tools like 'Simple.Data' or 'Oak' started using dynamics publicly and extensively (poor kittens). So there seems to be something to it ; that's why. So let's digg deeper in those usages and structures.
 
-Let's digg deeper in those usages and structures.
+<h1>The basics</h1>
 
-<h1>DynamicObject</h1>
+<h2>DynamicObject</h2>
 
-DynamicObject is the base class for all those behaviors. It is defined in the namespace 'System.Dynamic'. As described previously, a DynamicObject exposes members at run time instead of at compile time. Among others, it has two important functions that you can override:
+The System.Dynamic.DynamicObject is the base class for all those behaviors. As described previously, a DynamicObject exposes members at run time instead of at compile time. Among others, it has three important functions that you can override:
 
+* The TrySetMember
 * The TryGetMember method is called when a member of a dynamic class is requested and no arguments are specified. Ex: 'myDynamicObject.Property'.
 * The TryInvokeMember method is called when a member of a dynamic class is requested with arguments. Ex: 'myDynamicObject.Function()'.
 
-<h1>ExpandoObject</h1>
+<h2>ExpandoObject</h2>
 
-The ExpandoObject is also a class of the System.Dynamic namespace and represents an object whose members can be dynamically added and removed at run time.
+The System.Dynamic.ExpandoObject represents an object whose members can be dynamically added and removed at run time.
 
 dynamic myExpandoObject = new ExpandoObject();
 myExpandoObject.number = 10; //Add a property
@@ -74,19 +73,41 @@ Console.WriteLine(sampleObject.number); //Prints 10
 sampleObject.Increment(); //Call the function
 Console.WriteLine(sampleObject.number); //Prints 11
 
-Note how I used 'dynamic' to declare myExpandoObject. If I had used "ExpandoObject" or even "var", the object would then be statically typed and myExpandoObject.number would not compile anymore.
+Note how I used 'dynamic' to declare myExpandoObject. If I had used "ExpandoObject" or even "var", the object would then be statically typed and 'myExpandoObject.number' would not compile anymore.
 
-The ViewBag used in ASP.NET MVC is very similar in behavior to the ExpandoObject. As a matter of fact, most of the time, the ExpandoObjectsare used as a property-bag, like a Wild-Dictionary<string, object> or Strange-Hashtable. Those usages can already be very interesting, for instance Alexandra Rusina[http://blogs.msdn.com/b/csharpfaq/archive/2009/10/01/dynamic-in-c-4-0-introducing-the-expandoobject.aspx] described how it can simplify access to XML documents.
+The ViewBag used in ASP.NET MVC is very similar in behavior to the ExpandoObject. As a matter of fact, most of the time, the ExpandoObjects are used as a property-bag, like a wild Dictionary<string, object> or strange Hashtable. Those usages can already be very interesting. Alexandra Rusina[http://blogs.msdn.com/b/csharpfaq/archive/2009/10/01/dynamic-in-c-4-0-introducing-the-expandoobject.aspx] described for example how it can simplify access to XML documents.
 
-Additionally, the ExpandoObject also implements the INotifyPropertyChanged and can host events directly as properties.
+But even more interesting are the facts that the ExpandoObject also implements the INotifyPropertyChanged and can host events directly as properties.
 
-<h1>ElasticObject</h1>
+<h2>ElasticObject</h2>
 
+The ElasticObject[http://elasticobject.codeplex.com/], as a smart cousin (sic) of the ExpandoObject, goes a bit further. Where the ExpandoObject supports only one level, the ElasticObject supports the direct creation of hierarchical dynamic data structure and dynamic collections for instance. It also supports direct to XML and to Elastic conversions.
 
+//No need to define "Customer first"
+customerBaseElastic.Customer.FirstName = "Bob";
 
-<h1>Gemini</h1>
+var p1 = store.Products.Product(); //The '()' acts as a factory
+p1.Name = "Acme Floor Cleaner";
+var p2 = store.Products.Product();
+p1.Name = "Acme Bun";
+
+//Elastic -> XML
+XElement element = store > FormatType.XML;
+//XML -> Elastic
+dynamic elasticStore = element.ToElastic();
+
+<h2>Pre-Conclusion</h2>
+
+The DynamicObjects, ExpandoObjects and ElasticObjects are in fact nothing new. Introduced in 2009 and blogged about right away, it's really history. What interests me more is the fact that after barely hearing from dynamics for a few years (other than to warn about kittens of hell), I saw two projects pop-up in the end of 2011 and 2012 that brought back the use of dynamics, namely Oak and Simple.Data.
+
+<h1>Oak's Gemini</h1>
+
+Oak is an open-source framework that attempts to disrupt the process of Single Page Application (SPA) development in the .NET space. It tries to bridge the gap between C# and Javascript by many means and ease the general development livecycle ; a-la-Rails or node.js should I say?. Among others, Oak makes heavy use of a component called 'Gemini' that brings some capabilities of dynamic type systems to C#. Gemini allows us to create a dynamic object on the fly, define functions and enables introspection. All in all, it could be seen as a cherry-picked subset of the previous three objects with introspection on top.
 
 <h1>Simple.Data</h1>
+
+Simple.Data goes way beyond what we've seen sofar. Making an extensive use of the TryGetMember function, it allows the on-the-fly definition of Query-Like structures to manipulate Databases. A query could look like: database.Customers.FindAllByCustomerId(3);
+
 
 
 ------------------------------------------------------------
