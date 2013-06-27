@@ -25,13 +25,59 @@ Now try replacing the 'string' and 'int' types with 'dynamic' and you should not
 
 <h1>Why do we have a "dynamic" keyword in C# then?</h1>
 
+Let's consider the following examples[scotthanselmansblogpost]:
 
+Calculator calc = GetCalculator();
+int sum = calc.Add(10, 20);
+
+What about using the type 'object' instead of Calulator? In this case, the compiler does not know that an "Add" function exists, thus cannot allow us to call it. We have to use reflection to get to the member and invoke it, using that quite nasty syntax below:
+
+object calc = GetCalculator();
+Type calcType = calc.GetType();
+object res = calcType.InvokeMember("Add", BindingFlags.InvokeMethod, null, new object[] { 10, 20 });
+int sum = Convert.ToInt32(res);
+
+The 'Add' function is there. So if we could bypass the compile time check, we know the application would behave fine at runtime. Using a dynamic makes this possible:
+
+dynamic calc = GetCalculator();
+int sum = calc.Add(10, 20);
+
+The Dynamic Language Runtime (DLC) basically allows other languages like IronPython or IronRuby to talk to the Common Language Runtime (CLR). This keyword was specifically introduced to enable that behavior.
+
+<h1>Difference while coding</h1>
+
+Additionally to losing the compile time type checks, using dynamics comes with another drawback (some might argue that it's actually an advantage): the compiler cannot infer what methods and properties you can use, and thus prevents the usage of a code completion tool like IntelliSense[].
+
+<h1>So why bother?</h1>
+
+I know what you're thinking: this is neither new nor really exciting so why bother writing an article about it? And you would be right if it stopped there. Dynamics can be very useful in interoperability cases but the use of that naked 'dynamic' keyword doesn't make much sense outside those boundaries.
+
+Users of ASP.NET MVC experienced a first use of that dynamic power under the hood of the 'ViewBag'. Lately, some Frameworks or tools like 'Simple.Data' or 'Oak' started using dynamics publicly and extensively (poor kittens). So there seems to be something to it ; that's why.
+
+Let's digg deeper in those usages and structures.
+
+<h1>DynamicObject</h1>
+
+DynamicObject is the base class for all those behaviors. As described previously, a DynamicObject exposes members such as properties and methods at run time, instead of at compile time.
+
+<h1>ExpandoObject</h1>
+
+<h1>ElasticObject</h1>
+
+<h1>Gemini</h1>
+
+<h1>Simple.Data</h1>
+
+
+------------------------------------------------------------
+
+"The dynamic keyword is important when using these kinds of objects in that it tells to compiler to bind the method calls at runtime rather than compile time"
 
 ------------------------------------------------------------
 
 Dynamic Basics
 
-	http://www.hanselman.com/blog/C4AndTheDynamicKeywordWhirlwindTourAroundNET4AndVisualStudio2010Beta1.aspx
+	Source: http://www.hanselman.com/blog/C4AndTheDynamicKeywordWhirlwindTourAroundNET4AndVisualStudio2010Beta1.aspx
 
 Basics on the ExpandoObject
 
