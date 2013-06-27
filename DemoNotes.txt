@@ -7,7 +7,27 @@ http://www.herbstcampus.de/hc13/program/sessions.html#13
 
 ------------------------------------------------------------
 
-An int, a var, an object and a (small) dynamic are in a boat... or in a function, yes in a function. That could be the begining of a nerd-joke but that's the better introduction I could come up with... and it kinds of fits.
+<intro>I've heard more than once that hell will simply break loose when one use the C# keyword "dynamic". Another interpretation of the same rule says that god will kill a kitten for each usage... and if I'm not that scared of the first one... kittens... damn. To be honest, since its introduction in the 4th version of the .NET Framework, I tried to spare the lovely kittens... until last year. Since then, if those balls of fur do get in trouble when I use dynamics, I'm going to be in trouble with the PETA very soon.</intro>
+
+Let's backtrack a little bit. C# is a statically typed language, what's that dynamic I'm talking about?
+
+C# is indeed a statically typed language. The language expresses type restrictions that can be verified and validated at compile time. The following code does not compile. The compiler notices that the "++" operator cannot be applied to operands of type 'string' and throws an error:
+
+string lang = "C#";
+lang++;
+
+Similarly, unless we define such an extension function, the following will not compile either since the compiler will not find any definition of a 'ToUpper' method accepting a first argument of type 'int':
+
+int zeAnswer = 42;
+zeAnswer.ToUpper();
+
+Now try replacing the 'string' and 'int' types with 'dynamic' and you should notice the compiler instantly smiling back at you with no errors to notify. With dynamic typing, the type-safety is determined at runtime. Thus, if the examples above compile, they will spectacularly crash once you try to execute them.
+
+<h1>Why do we have a "dynamic" keyword in C# then?</h1>
+
+
+
+------------------------------------------------------------
 
 Dynamic Basics
 
