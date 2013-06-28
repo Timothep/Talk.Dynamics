@@ -116,17 +116,23 @@ Get["/hello/{name}"] = parameters => {
 
 This use of a dynamic is very smart. Nancy has many ways to capture parameters (query string, captured parameters & body of the request) and can capture any kind of data, thus packing them in a dynamic object drastically reduces the complexity of the binding the framework has to offer. Furthermore, since the definition of the ".name" value and its usage are beside one another, there is no discoverability problem in this case. Still, it is not easy to see what's in the parameters variable ; you'd better know it once designing the application. For instance if a query string was also passed "/hello/nancy?option=default", it is not easy to know that this "option" is also available.
 
+Nancy also uses dynamics in the objects returned by the routes. #########
+
 <h1>Oak's Gemini</h1>
 
-Oak is an open-source framework that attempts to disrupt the process of Single Page Application (SPA) development in the .NET space. It tries to bridge the gap between C# and Javascript by many means and ease the general development livecycle bringing Rails / node.js development tools. Among others, Oak makes heavy use of a self-written component called 'Gemini' that brings some capabilities of dynamic type systems to C#. A Gemini object is able to create properties on the fly, define functions and supports introspection. All in all, it could be seen as a cherry-picked subset of the Dynamic/Expando/Elastic-Objects with introspection on top.
+Oak is an open-source framework that attempts to disrupt the process of Single Page Application (SPA) development in the .NET space. It tries to bridge the gap between C# and Javascript by many means and ease the general development livecycle imitating some Rails / node.js development tools. Among others, Oak makes heavy use of a self-written component called 'Gemini' that brings some capabilities of dynamic type systems to C#. A Gemini object is able to create properties on the fly, define functions and supports introspection. All in all, it could be seen as a cherry-picked subset of the Dynamic/Expando/Elastic-Objects with introspection on top.
 
-Again, it is for model-binding that Oak uses Gemini the most. For passing data in and out of his models from and toward the views.
+Again, it is for model-binding that Oak uses Gemini the most. For passing data in and out of his models from and toward the views. But also as a key component for accessing its databases, converting Json data and so on.
 
 <h1>Simple.Data</h1>
 
-Simple.Data goes way beyond what we've seen sofar. Making an extensive use of the TryGetMember function, it allows the on-the-fly definition of Query-Like structures to manipulate Databases. A query could look like: database.Customers.FindAllByCustomerId(3);
+Simple.Data takes another approach. Making an extensive use of the TryGetMember function, it allows the on-the-fly definition of Query-Like structures to manipulate Databases using a syntax much closer to human-language than any other query mean. For example, the following query (where "database" is a dynamic type) would produce a "SELECT * FROM Customers WHERE CustomerId = 3" query: "database.Customers.FindAllByCustomerId(3);". The strength of Simple.Data is to combine objects, commands and data in a very readable way.
 
+Most of Simple.Data's classes extend the DynamicObject and uses regexes to parse the called members in the TryGetMember functions. Providing a relatively small set of commands (Find, FindAllByXXX, OrderByXXX, Select, WithXXX, Where etc.) Simple.Data provides an extremely rich O/RM API without the hurdle of a mapping configuration and SQL statements.
 
+<h1>Conclusion</h1>
+
+We've seen a few interesting "alternative" usages.
 
 ------------------------------------------------------------
 
