@@ -98,11 +98,29 @@ dynamic elasticStore = element.ToElastic();
 
 <h2>Pre-Conclusion</h2>
 
-The DynamicObjects, ExpandoObjects and ElasticObjects are in fact nothing new. Introduced in 2009 and blogged about right away, it's really history. What interests me more is the fact that after barely hearing from dynamics for a few years (other than to warn about kittens of hell), I saw two projects pop-up in the end of 2011 and 2012 that brought back the use of dynamics, namely Oak and Simple.Data.
+The DynamicObjects, ExpandoObjects and ElasticObjects are in fact nothing new. Introduced in 2009 and blogged about right away, it's really history. What interests me more is the fact that after barely hearing from dynamics for a few years (other than to warn about kittens of hell), I saw a few projects pop-up in the end of 2011 and 2012 that brought back the use of dynamics, namely NancyFx, Oak and Simple.Data.
+
+<h1>Discoverability</h1>
+
+One 
+
+<h1>NancyFx</h1>
+
+Nancy is a Micro-Webframework. Its goal is to provide a lightweight and low-ceremony way of serving web pages (per opposition to ASP.NET MVC which tends to do everything and its contrary). Nancy is ready-to-go out of the box and can be extended when needed.
+
+When you define a "route", Nancy will capture parameters for you and serve them up using a dynamic object. For instance the route below will be activated for a HTTP-GET Request on the "/hello/bob" or "/hello/nancy" URIs. Nancy will then capture the "bob" and "nancy" parameters and pack them up in the dynamic dictionary represented by the variable "parameters".
+
+Get["/hello/{name}"] = parameters => {
+    return "Hello " + parameters.name;
+};
+
+This use of a dynamic is very smart. Nancy has many ways to capture parameters (query string, captured parameters & body of the request) and can capture any kind of data, thus packing them in a dynamic object drastically reduces the complexity of the binding the framework has to offer. Furthermore, since the definition of the ".name" value and its usage are beside one another, there is no discoverability problem in this case. Still, it is not easy to see what's in the parameters variable ; you'd better know it once designing the application. For instance if a query string was also passed "/hello/nancy?option=default", it is not easy to know that this "option" is also available.
 
 <h1>Oak's Gemini</h1>
 
-Oak is an open-source framework that attempts to disrupt the process of Single Page Application (SPA) development in the .NET space. It tries to bridge the gap between C# and Javascript by many means and ease the general development livecycle ; a-la-Rails or node.js should I say?. Among others, Oak makes heavy use of a component called 'Gemini' that brings some capabilities of dynamic type systems to C#. Gemini allows us to create a dynamic object on the fly, define functions and enables introspection. All in all, it could be seen as a cherry-picked subset of the previous three objects with introspection on top.
+Oak is an open-source framework that attempts to disrupt the process of Single Page Application (SPA) development in the .NET space. It tries to bridge the gap between C# and Javascript by many means and ease the general development livecycle bringing Rails / node.js development tools. Among others, Oak makes heavy use of a self-written component called 'Gemini' that brings some capabilities of dynamic type systems to C#. A Gemini object is able to create properties on the fly, define functions and supports introspection. All in all, it could be seen as a cherry-picked subset of the Dynamic/Expando/Elastic-Objects with introspection on top.
+
+Again, it is for model-binding that Oak uses Gemini the most. For passing data in and out of his models from and toward the views.
 
 <h1>Simple.Data</h1>
 
