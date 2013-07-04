@@ -32,6 +32,9 @@
             //Gemini Demo
             //Todo
 
+            //TrimPathApi Demo
+            var demo9 = new TrimPathApiDemo();
+
             //Simple.Data Demo
             //Todo
         }
