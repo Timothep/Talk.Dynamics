@@ -1,13 +1,7 @@
 ﻿namespace Dynamics.Demos
 {
-    internal class FirstDemo
+    internal class DummyDemo
     {
-        public FirstDemo()
-        {
-            DoesNotCompile();
-            DynamicsToTheRescue();
-        }
-
         public static void DoesNotCompile()
         {
             //string lang = "C#";

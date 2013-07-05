@@ -1,14 +1,25 @@
 ﻿using System.Dynamic;
+using NUnit.Framework;
 
 namespace Dynamics.Demos
 {
-    internal class DynamicObjectDemo
+    [TestFixture]
+    internal class TestDemo4
     {
-        public DynamicObjectDemo()
+        [Test]
+        [Ignore]
+        public void TestDemo4TrySetMember()
         {
             dynamic myDynamicObject = new MyDynamicObject();
-            //myDynamicObject.Title = "DynamicObjectDemo";
-            //var title = myDynamicObject.Title;
+            myDynamicObject.Title = "DynamicObjectDemo";
+        }
+
+        [Test]
+        [Ignore]
+        public void TestDemo4TryGetMember()
+        {
+            dynamic myDynamicObject = new MyDynamicObject();
+            var title = myDynamicObject.Title;
         }
     }
 

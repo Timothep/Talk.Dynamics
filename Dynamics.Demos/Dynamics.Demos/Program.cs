@@ -23,19 +23,19 @@
             //demo5.LinqExpandoDemo();
             //demo5.ExpandoToXmlDemo();
 
-            //ElasticObject Demo
+            //ElasticObject Demo6
             //Todo
 
-            //NancyFx Demo
+            //NancyFx Demo7
             //Todo
 
-            //Gemini Demo
+            //Gemini TestDemo8
             //Todo
 
             //TrimPathApi Demo
-            var demo9 = new TrimPathApiDemo();
+            //var demo9 = new DeTrimPathApiDemo();
 
-            //Simple.Data Demo
+            //Simple.Data Demo10
             //Todo
         }
     }

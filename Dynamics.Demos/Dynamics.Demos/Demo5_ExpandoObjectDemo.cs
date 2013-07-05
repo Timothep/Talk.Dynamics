@@ -3,27 +3,59 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
 using System.Xml.Linq;
+using NUnit.Framework;
 
 namespace Dynamics.Demos
 {
     /// <summary>
-    ///     Demo heavily inspired by Alexandra Rusina's Blog post
-    ///     http://blogs.msdn.com/b/csharpfaq/archive/2009/10/01/dynamic-in-c-4-0-introducing-the-expandoobject.aspx
+    ///   Demo heavily inspired by Alexandra Rusina's Blog post
+    ///   http://blogs.msdn.com/b/csharpfaq/archive/2009/10/01/dynamic-in-c-4-0-introducing-the-expandoobject.aspx
     /// </summary>
-    internal class ExpandoObjectDemo
+    [TestFixture]
+    internal class TestDemo5
     {
-        public void BasicsDemo()
+        /// <summary>
+        ///   Converts an ExpandoObject to its XML representation
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="nodeName"></param>
+        /// <returns></returns>
+        public static XElement ExpandoToXml(dynamic node, String nodeName)
         {
-            dynamic expando = new ExpandoObject();
-            expando.Title = "ExpandoObject Demo";
-            var title = expando.Title;
-            expando.DoSomething = new Action(() => Console.WriteLine("DidSomething"));
-            expando.DoSomething();
+            var xmlNode = new XElement(nodeName);
+
+            foreach (var property in (IDictionary<String, Object>) node)
+            {
+                if (property.Value is ExpandoObject)
+                    xmlNode.Add(ExpandoToXml(property.Value, property.Key));
+
+                else if (property.Value.GetType() == typeof (List<dynamic>))
+                {
+                    foreach (var element in (List<dynamic>) property.Value)
+                        xmlNode.Add(ExpandoToXml(element, property.Key));
+                }
+                else
+                    xmlNode.Add(new XElement(property.Key, property.Value));
+            }
+            return xmlNode;
         }
 
-        public void XmlvsExpandoDemo()
+        [Test]
+        public void TestDemo5Basics()
         {
-            //####### XML #######
+            dynamic expando = new ExpandoObject();
+
+            expando.Title = "ExpandoObject Demo";
+            expando.DoSomething = new Func<string>(() => "DidSomething");
+
+            Assert.AreEqual("ExpandoObject Demo", expando.Title);
+            Assert.AreEqual("DidSomething", expando.DoSomething());
+        }
+
+        [Test]
+        public void TestDemo5XmlvsExpandoDemo()
+        {
+            //Arrange
             var contactXml =
                 new XElement("Contact",
                              new XElement("Name", "Patrick Hines"),
@@ -36,11 +68,6 @@ namespace Dynamics.Demos
                                  )
                     );
 
-            //Print out something
-            Console.WriteLine((string) contactXml.Element("Address").Element("State"));
-
-            //####### EXPANDO #######
-
             dynamic contact = new ExpandoObject();
             contact.Name = "Patrick Hines";
             contact.Phone = "206-555-0144";
@@ -50,11 +77,17 @@ namespace Dynamics.Demos
             contact.Address.State = "WA";
             contact.Address.Postal = "68402";
 
-            //Print out something
-            Console.WriteLine(contact.Address.State);
+            //Act
+            var xmlState = contactXml.Element("Address").Element("State").ToString();
+            var expandoState = contact.Address.State;
+
+            //Assert
+            Assert.AreEqual("<State>WA</State>", xmlState);
+            Assert.AreEqual("WA", expandoState);
         }
 
-        public void LinqExpandoDemo()
+        [Test]
+        public void TestDemo5LinqExpandoDemo()
         {
             dynamic contacts = new List<dynamic>();
 
@@ -73,10 +106,15 @@ namespace Dynamics.Demos
             var phones = from c in (contacts as List<dynamic>)
                          where c.Name == "Patrick Hines"
                          select c.Phone;
+
+            Assert.AreEqual(1, phones.Count());
+            Assert.AreEqual("206-555-0144", phones.FirstOrDefault());
         }
 
-        public void ExpandoToXmlDemo()
+        [Test]
+        public void TestDemo5ExpandoToXmlDemo()
         {
+            //Arrange
             dynamic contact = new ExpandoObject();
             contact.Name = "Patrick Hines";
             contact.Phone = "206-555-0144";
@@ -86,32 +124,14 @@ namespace Dynamics.Demos
             contact.Address.State = "WA";
             contact.Address.Postal = "68402";
 
+            //Act
             //Convert from Expando to XML
             var contactXml = ExpandoToXml(contact, "Contact");
-        }
+            var xmlState = contactXml.Element("Address").Element("State").ToString();
 
-        /// <summary>
-        ///     Converts an ExpandoObject to its XML representation
-        /// </summary>
-        /// <param name="node"></param>
-        /// <param name="nodeName"></param>
-        /// <returns></returns>
-        public static XElement ExpandoToXml(dynamic node, String nodeName)
-        {
-            var xmlNode = new XElement(nodeName);
-
-            foreach (var property in (IDictionary<String, Object>) node)
-            {
-                if (property.Value is ExpandoObject)
-                    xmlNode.Add(ExpandoToXml(property.Value, property.Key));
-
-                else if (property.Value.GetType() == typeof (List<dynamic>))
-                    foreach (var element in (List<dynamic>) property.Value)
-                        xmlNode.Add(ExpandoToXml(element, property.Key));
-                else
-                    xmlNode.Add(new XElement(property.Key, property.Value));
-            }
-            return xmlNode;
+            //Assert
+            Assert.IsTrue(contactXml.HasElements);
+            Assert.AreEqual("<State>WA</State>", xmlState);
         }
     }
 }
