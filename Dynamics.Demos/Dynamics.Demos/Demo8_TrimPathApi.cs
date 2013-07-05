@@ -103,7 +103,7 @@ namespace Dynamics.Demos
     }
 
     [TestFixture]
-    public class TestsDemo9
+    public class TestsDemo8
     {
         private const string PathToTrim = @"C:\Dev\Ruby193\bin\ruby.exe";
         private dynamic trimPathApi;
@@ -115,42 +115,42 @@ namespace Dynamics.Demos
         }
 
         [Test]
-        public void TestDemo9ExtractDriveLetter()
+        public void TestDemo8ExtractDriveLetter()
         {
             MemberAccessWrapper driveLetter = trimPathApi.ExtractDriveLetter(PathToTrim);
             Assert.AreEqual("C", driveLetter.Value);
         }
 
         [Test]
-        public void TestDemo9ExtractFileExtension()
+        public void TestDemo8ExtractFileExtension()
         {
             MemberAccessWrapper fileExtension = trimPathApi.ExtractFileExtension(PathToTrim);
             Assert.AreEqual(".exe", fileExtension.Value);
         }
 
         [Test]
-        public void TestDemo9ExtractFileName()
+        public void TestDemo8ExtractFileName()
         {
             MemberAccessWrapper fileName = trimPathApi.ExtractFileName(PathToTrim);
             Assert.AreEqual("ruby.exe", fileName.Value);
         }
 
         [Test]
-        public void TestDemo9ExtractFileNameWithoutExtension()
+        public void TestDemo8ExtractFileNameWithoutExtension()
         {
             MemberAccessWrapper fileNameWithExtension = trimPathApi.ExtractFileName(PathToTrim).WithoutExtension();
             Assert.AreEqual("ruby", fileNameWithExtension.Value);
         }
 
         [Test]
-        public void TestDemo9ExtractPath()
+        public void TestDemo8ExtractPath()
         {
             MemberAccessWrapper path = trimPathApi.ExtractPath(PathToTrim);
             Assert.AreEqual(@"C:\Dev\Ruby193\bin", path.Value);
         }
 
         [Test]
-        public void TestDemo9ExtractPathRoot()
+        public void TestDemo8ExtractPathRoot()
         {
             MemberAccessWrapper pathRoot = trimPathApi.ExtractPathRoot(PathToTrim);
             Assert.AreEqual(@"C:\", pathRoot.Value);

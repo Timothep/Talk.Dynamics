@@ -37,6 +37,9 @@
     <Reference Include="AmazedSaint.Elastic">
       <HintPath>..\packages\AmazedSaint.ElasticObject.1.2.0\lib\net40\AmazedSaint.Elastic.dll</HintPath>
     </Reference>
+    <Reference Include="CsQuery">
+      <HintPath>..\packages\CsQuery.1.3.4\lib\net40\CsQuery.dll</HintPath>
+    </Reference>
     <Reference Include="IronPython">
       <HintPath>..\packages\IronPython.2.7.3\lib\Net40\IronPython.dll</HintPath>
     </Reference>
@@ -64,6 +67,15 @@
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Simple.Data">
+      <HintPath>..\packages\Simple.Data.Core.0.18.3.1\lib\net40\Simple.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Simple.Data.Ado">
+      <HintPath>..\packages\Simple.Data.Ado.0.18.3.1\lib\net40\Simple.Data.Ado.dll</HintPath>
+    </Reference>
+    <Reference Include="Simple.Data.SqlServer">
+      <HintPath>..\packages\Simple.Data.SqlServer.0.18.3.1\lib\net40\Simple.Data.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -73,18 +85,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Demo10_SimpleData.cs" />
+    <Compile Include="Demo9_SimpleData.cs" />
     <Compile Include="Demo2_CalcDemo.cs" />
     <Compile Include="Demo4_DynamicObjectDemo.cs" />
     <Compile Include="Demo5_ExpandoObjectDemo.cs" />
     <Compile Include="Demo1_DummyDemo.cs" />
     <Compile Include="Demo6_ElasticObject.cs" />
-    <Compile Include="Demo7_NancyFx.cs" />
-    <Compile Include="Demo8_Gemini.cs" />
+    <Compile Include="Demo7_Gemini.cs" />
+    <Compile Include="Oak\Gemini.cs" />
+    <Compile Include="Oak\GeminiInfo.cs" />
+    <Compile Include="Oak\ObjectExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Demo3_PythonDemo.cs" />
-    <Compile Include="Demo9_TrimPathApi.cs" />
+    <Compile Include="Demo8_TrimPathApi.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -94,6 +108,7 @@
     <Content Include="Demo3_script.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Oak\ReleaseNotes.txt" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
