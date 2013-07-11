@@ -85,7 +85,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Demo9_SimpleData.cs" />
+    <Compile Include="Demo8_SimpleData.cs" />
     <Compile Include="Demo2_CalcDemo.cs" />
     <Compile Include="Demo4_DynamicObjectDemo.cs" />
     <Compile Include="Demo5_ExpandoObjectDemo.cs" />
@@ -98,7 +98,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Demo3_PythonDemo.cs" />
-    <Compile Include="Demo8_TrimPathApi.cs" />
+    <Compile Include="Demo9_TrimPathApi.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
