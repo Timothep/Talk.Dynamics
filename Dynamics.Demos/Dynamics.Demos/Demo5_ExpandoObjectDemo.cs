@@ -87,6 +87,29 @@ namespace Dynamics.Demos
         }
 
         [Test]
+        public void TestDemo5ExpandoToXmlDemo()
+        {
+            //Arrange
+            dynamic contact = new ExpandoObject();
+            contact.Name = "Patrick Hines";
+            contact.Phone = "206-555-0144";
+            contact.Address = new ExpandoObject();
+            contact.Address.Street = "123 Main St";
+            contact.Address.City = "Mercer Island";
+            contact.Address.State = "WA";
+            contact.Address.Postal = "68402";
+
+            //Act
+            //Convert from Expando to XML
+            var contactXml = ExpandoToXml(contact, "Contact");
+            var xmlState = contactXml.Element("Address").Element("State").ToString();
+
+            //Assert
+            Assert.IsTrue(contactXml.HasElements);
+            Assert.AreEqual("<State>WA</State>", xmlState);
+        }
+
+        [Test]
         public void TestDemo5LinqExpandoDemo()
         {
             dynamic contacts = new List<dynamic>();
@@ -109,29 +132,6 @@ namespace Dynamics.Demos
 
             Assert.AreEqual(1, phones.Count());
             Assert.AreEqual("206-555-0144", phones.FirstOrDefault());
-        }
-
-        [Test]
-        public void TestDemo5ExpandoToXmlDemo()
-        {
-            //Arrange
-            dynamic contact = new ExpandoObject();
-            contact.Name = "Patrick Hines";
-            contact.Phone = "206-555-0144";
-            contact.Address = new ExpandoObject();
-            contact.Address.Street = "123 Main St";
-            contact.Address.City = "Mercer Island";
-            contact.Address.State = "WA";
-            contact.Address.Postal = "68402";
-
-            //Act
-            //Convert from Expando to XML
-            var contactXml = ExpandoToXml(contact, "Contact");
-            var xmlState = contactXml.Element("Address").Element("State").ToString();
-
-            //Assert
-            Assert.IsTrue(contactXml.HasElements);
-            Assert.AreEqual("<State>WA</State>", xmlState);
         }
     }
 }
