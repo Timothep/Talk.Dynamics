@@ -77,6 +77,7 @@
       <HintPath>..\packages\Simple.Data.SqlServer.0.18.3.1\lib\net40\Simple.Data.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -92,6 +93,10 @@
     <Compile Include="Demo1_DummyDemo.cs" />
     <Compile Include="Demo6_ElasticObject.cs" />
     <Compile Include="Demo7_Gemini.cs" />
+    <Compile Include="Massive\Massive.cs" />
+    <Compile Include="Massive\Massive.Oracle.cs" />
+    <Compile Include="Massive\Massive.PostgreSQL.cs" />
+    <Compile Include="Massive\Massive.Sqlite.cs" />
     <Compile Include="Oak\Gemini.cs" />
     <Compile Include="Oak\GeminiInfo.cs" />
     <Compile Include="Oak\ObjectExtensions.cs" />
@@ -102,6 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <Compile Include="Demo9_Massive.cs" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
