@@ -10,11 +10,20 @@ namespace Dynamics.Demos
         [Test]
         public void TestDemo9MassiveGetAll()
         {
-            var table = new Albums();
-            var albums = table.All();
-            //var albums = table.Find(GenreId: 1);
+            dynamic table = new Albums();
+            var allAlbums = table.All();
 
-            foreach (var album in albums)
+            foreach (var album in allAlbums)
+                Console.WriteLine(album.Title);
+        }
+
+        [Test]
+        public void TestDemo9MassiveFind()
+        {
+            dynamic table = new Albums();
+            var albumsGenreId1 = table.Find(GenreId: 1);
+
+            foreach (var album in albumsGenreId1)
                 Console.WriteLine(album.Title);
         }
     }

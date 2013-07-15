@@ -86,7 +86,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Demo8_SimpleData.cs" />
+    <Compile Include="Demo10_SimpleData.cs" />
     <Compile Include="Demo2_CalcDemo.cs" />
     <Compile Include="Demo4_DynamicObjectDemo.cs" />
     <Compile Include="Demo5_ExpandoObjectDemo.cs" />

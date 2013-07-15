@@ -23,11 +23,11 @@ namespace SelfHostingNancy
 	{
 		public MainModule()
 		{
-			Get["/"] = x => "Hello World";
+			Get["/"] = _ => "Hello World";
 
-            Get["/{something}"] = x =>
+            Get["/{something}"] = parameters => //URI={something}?option=default -> parameters.option
                 {
-                    var something = x.something;
+                    var something = parameters.something;
                     return HttpStatusCode.OK;
                     //return "Hello World";
                     //return View["myView"];

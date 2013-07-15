@@ -58,15 +58,15 @@ namespace Dynamics.Demos
             //Arrange
             var contactXml =
                 new XElement("Contact",
-                             new XElement("Name", "Patrick Hines"),
-                             new XElement("Phone", "206-555-0144"),
-                             new XElement("Address",
-                                          new XElement("Street1", "123 Main St"),
-                                          new XElement("City", "Mercer Island"),
-                                          new XElement("State", "WA"),
-                                          new XElement("Postal", "68042")
-                                 )
-                    );
+                    new XElement("Name", "Patrick Hines"),
+                    new XElement("Phone", "206-555-0144"),
+                    new XElement("Address",
+                        new XElement("Street1", "123 Main St"),
+                        new XElement("City", "Mercer Island"),
+                        new XElement("State", "WA"),
+                        new XElement("Postal", "68042")
+                                )
+                            );
 
             dynamic contact = new ExpandoObject();
             contact.Name = "Patrick Hines";
@@ -126,9 +126,9 @@ namespace Dynamics.Demos
             //                where c.Element("Name").Value == "Patrick Hines"
             //                select c.Element("Phone").Value;
 
-            var phones = from c in (contacts as List<dynamic>)
-                         where c.Name == "Patrick Hines"
-                         select c.Phone;
+            var phones = (contacts as List<dynamic>)
+                            .Where(c => c.Name == "Patrick Hines")
+                            .Select(c => c.Phone);
 
             Assert.AreEqual(1, phones.Count());
             Assert.AreEqual("206-555-0144", phones.FirstOrDefault());

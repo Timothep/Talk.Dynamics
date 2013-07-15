@@ -1,4 +1,5 @@
-﻿using System.Dynamic;
+﻿using System;
+using System.Dynamic;
 using NUnit.Framework;
 
 namespace Dynamics.Demos
@@ -7,7 +8,6 @@ namespace Dynamics.Demos
     internal class TestDemo4
     {
         [Test]
-        [Ignore]
         public void TestDemo4TrySetMember()
         {
             dynamic myDynamicObject = new MyDynamicObject();
@@ -15,7 +15,6 @@ namespace Dynamics.Demos
         }
 
         [Test]
-        [Ignore]
         public void TestDemo4TryGetMember()
         {
             dynamic myDynamicObject = new MyDynamicObject();
@@ -25,17 +24,30 @@ namespace Dynamics.Demos
 
     internal class MyDynamicObject : DynamicObject
     {
+        public string MyTitle { get; set; }
+
         public override bool TrySetMember(SetMemberBinder binder, object value)
         {
             var propertyToSet = binder.Name;
             var valueToSet = value;
-            return base.TrySetMember(binder, value);
+
+            MyTitle = (string)value;
+
+            value = null;
+            return true;
         }
 
         public override bool TryGetMember(GetMemberBinder binder, out object result)
         {
             var propertyOrMethodToGet = binder.Name;
-            return base.TryGetMember(binder, out result);
+
+            result = MyTitle;
+            return true;
+        }
+
+        public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
+        {
+            return base.TryInvokeMember(binder, args, out result);
         }
     }
 }
