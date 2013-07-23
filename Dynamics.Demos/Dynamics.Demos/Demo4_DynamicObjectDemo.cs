@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Dynamic;
+using Massive;
 using NUnit.Framework;
 
 namespace Dynamics.Demos
@@ -7,6 +8,25 @@ namespace Dynamics.Demos
     [TestFixture]
     internal class TestDemo4
     {
+        [Test]
+        public void TestDemo4DynamicvsDynamicObject()
+        {
+            //"dynamic" allows me to write anything after the "."
+            dynamic notDynamicString = "";
+            notDynamicString.MyTitle = "42";
+            notDynamicString.Title = "42";
+
+            //DynamicObject can call "real properties" like a "normal object"
+            MyDynamicObject dynamicObject = new MyDynamicObject();
+            dynamicObject.MyTitle = "42";
+            //dynamicObject.Title = "42";
+
+            //Combine the two to get both features
+            dynamic fullDynamicObject = new MyDynamicObject();
+            fullDynamicObject.MyTitle = "42";
+            fullDynamicObject.Title = "42";
+        }
+
         [Test]
         public void TestDemo4TrySetMember()
         {
