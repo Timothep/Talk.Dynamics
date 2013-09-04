@@ -23,11 +23,16 @@ namespace SelfHostingNancy
 	{
 		public MainModule()
 		{
+                            //Func<dynamic, dynamic>
 			Get["/"] = _ => "Hello World";
 
-            Get["/{something}"] = parameters => //URI={something}?option=default -> parameters.option
+            Get["/{page}"] = parameters => //Ex URI=www.mysite.com/about?lang=de
                 {
-                    var something = parameters.something;
+                    //Input
+                    var page = parameters.page; //"about"
+                    var language = parameters.lang; //"de"
+
+                    //Output
                     return HttpStatusCode.OK;
                     //return "Hello World";
                     //return View["myView"];

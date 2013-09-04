@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 using Oak;
 
@@ -12,27 +13,10 @@ namespace Dynamics.Demos
         {
             dynamic gemini = new Gemini(new { FirstName = "Jane", LastName = "Doe" });
             gemini.MiddleInitial = "J";
+            gemini.SayHello = new Func<string>(() => "Hello");
 
             Assert.AreEqual("Jane", gemini.FirstName);
-            Assert.AreEqual("J", gemini.MiddleInitial);
-        }
-
-        [Test]
-        public void TestDemo7MethodsOnTheFly()
-        {
-            dynamic gemini = new Gemini(new { FirstName = "Jane", LastName = "Doe" });
-            gemini.SayHello = new DynamicFunction(() => "Hello");
-
-            //calling method
             Assert.AreEqual("Hello", gemini.SayHello());
-        }
-
-        [Test]
-        public void TestDemo7GeminiObjectGraph()
-        {
-            dynamic gemini = new Gemini(new {FirstName = "Jane", LastName = "Doe"});
-            Assert.AreEqual("this (Gemini)\r\n  FirstName (String): Jane\r\n  LastName (String): Doe\r\n  SetMembers (DynamicFunctionWithParam)\r\n",
-                            gemini.ToString());
         }
 
         [Test]
@@ -48,10 +32,12 @@ namespace Dynamics.Demos
         public void TestDemo7Introspection()
         {
             dynamic gemini = new Gemini(new {FirstName = "Jane", LastName = "Doe"});
-            IDictionary<string, object> members = gemini.HashExcludingDelegates();
+            gemini.SayHello = new Func<string>(() => "Hello");
+
+            IDictionary<string, object> properties = gemini.HashOfProperties();
 
             Assert.AreEqual("Doe", gemini.GetMember("LastName"));
-            Assert.AreEqual(2, members.Count);
+            Assert.AreEqual(2, properties.Count);
         }
     }
 }

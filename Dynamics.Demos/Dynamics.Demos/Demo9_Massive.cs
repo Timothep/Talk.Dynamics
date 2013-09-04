@@ -1,17 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
 using Massive;
 using NUnit.Framework;
 
 namespace Dynamics.Demos
 {
+    public class Albums : DynamicModel
+    {
+        public Albums()
+            : base("SqlServer", tableName: "Album", primaryKeyField: "AlbumId")
+        {
+        }
+    }
+
     [TestFixture]
     internal class Demo9_Massive
     {
         [Test]
         public void TestDemo9MassiveGetAll()
         {
-            dynamic table = new Albums();
-            var allAlbums = table.All();
+            dynamic albumTable = new Albums();
+            IEnumerable<dynamic> allAlbums = albumTable.All();
 
             foreach (var album in allAlbums)
                 Console.WriteLine(album.Title);
@@ -21,17 +30,13 @@ namespace Dynamics.Demos
         public void TestDemo9MassiveFind()
         {
             dynamic table = new Albums();
-            var albumsGenreId1 = table.Find(GenreId: 1);
+            IEnumerable<dynamic> albumsWithGenreId1 = table.FindBy(GenreId: 1);
 
-            foreach (var album in albumsGenreId1)
-                Console.WriteLine(album.Title);
-        }
-    }
-
-    public class Albums : DynamicModel
-    {
-        public Albums() : base("SqlServer", tableName: "Album", primaryKeyField: "AlbumId")
-        {
+            foreach (var album in albumsWithGenreId1)
+            {
+                Assert.AreEqual("For Those About To Rock We Salute You", album.Title);
+                break;
+            }
         }
     }
 }

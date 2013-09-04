@@ -7,23 +7,6 @@ namespace Dynamics.Demos
     [TestFixture]
     internal class TestDemo6
     {
-        //EXPANDO
-        //<Contact>
-        //  <Name>Patrick Hines</Name>
-        //  <Phone>206-555-0144</Phone>
-        //  <Address>
-        //    <Street>123 Main St</Street>
-        //    <City>Mercer Island</City>
-        //    <State>WA</State>
-        //    <Postal>68402</Postal>
-        //  </Address>
-        //</Contact>
-
-        //ELASTIC
-        //<Contact Name="Patrick Hines" Phone="206-555-0144">
-        //  <Adress Street="123 Main St" City="Mercer Island" State="WA" Postal="68402" />
-        //</Contact>
-
         [Test]
         public void TestDemo6ExpandovsElasticDemo()
         {
@@ -73,5 +56,22 @@ namespace Dynamics.Demos
             Assert.IsTrue(contactXml.HasElements);
             Assert.AreEqual("WA", xmlState.Value);
         }
+
+        //EXPANDO
+        //<Contact>
+        //  <Name>Patrick Hines</Name>
+        //  <Phone>206-555-0144</Phone>
+        //  <Address>
+        //    <Street>123 Main St</Street>
+        //    <City>Mercer Island</City>
+        //    <State>WA</State>
+        //    <Postal>68402</Postal>
+        //  </Address>
+        //</Contact>
+
+        //ELASTIC
+        //<Contact Name="Patrick Hines" Phone="206-555-0144">
+        //  <Adress Street="123 Main St" City="Mercer Island" State="WA" Postal="68402" />
+        //</Contact>
     }
 }

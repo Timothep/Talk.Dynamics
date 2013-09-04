@@ -78,11 +78,11 @@ namespace Dynamics.Demos
             contact.Address.Postal = "68402";
 
             //Act
-            var xmlState = contactXml.Element("Address").Element("State").ToString();
+            var xmlState = contactXml.Element("Address").Element("State").Value;
             var expandoState = contact.Address.State;
 
             //Assert
-            Assert.AreEqual("<State>WA</State>", xmlState);
+            Assert.AreEqual("WA", xmlState);
             Assert.AreEqual("WA", expandoState);
         }
 
@@ -102,11 +102,11 @@ namespace Dynamics.Demos
             //Act
             //Convert from Expando to XML
             var contactXml = ExpandoToXml(contact, "Contact");
-            var xmlState = contactXml.Element("Address").Element("State").ToString();
+            var xmlState = contactXml.Element("Address").Element("State").Value;
 
             //Assert
             Assert.IsTrue(contactXml.HasElements);
-            Assert.AreEqual("<State>WA</State>", xmlState);
+            Assert.AreEqual("WA", xmlState);
         }
 
         [Test]
