@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using NUnit.Framework;
-using Oak;
-
-namespace Dynamics.Demos
+﻿namespace Dynamics.Demos
 {
+    using System;
+    using System.Collections.Generic;
+    using NUnit.Framework;
+    using Oak;
+
     [TestFixture]
     internal class TestDemo6
     {

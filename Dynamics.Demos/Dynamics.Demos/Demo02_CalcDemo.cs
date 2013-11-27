@@ -1,9 +1,9 @@
-﻿using System;
-using System.Reflection;
-using NUnit.Framework;
-
-namespace Dynamics.Demos
+﻿namespace Dynamics.Demos
 {
+    using System;
+    using System.Reflection;
+    using NUnit.Framework;
+
     /// <summary>
     ///   Demo heavily inspired by Scott Hanselmann's Blog post
     ///   http://www.hanselman.com/blog/C4AndTheDynamicKeywordWhirlwindTourAroundNET4AndVisualStudio2010Beta1.aspx

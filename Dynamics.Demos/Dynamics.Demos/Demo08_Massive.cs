@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Massive;
-using NUnit.Framework;
-
-namespace Dynamics.Demos
+﻿namespace Dynamics.Demos
 {
+    using System;
+    using System.Collections.Generic;
+    using Massive;
+    using NUnit.Framework;
+
     public class Albums : DynamicModel
     {
         public Albums()

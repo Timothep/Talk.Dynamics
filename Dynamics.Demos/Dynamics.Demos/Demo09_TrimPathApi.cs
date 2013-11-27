@@ -1,11 +1,11 @@
-﻿using System;
-using System.Dynamic;
-using System.Globalization;
-using System.IO;
-using NUnit.Framework;
-
-namespace Dynamics.Demos
+﻿namespace Dynamics.Demos
 {
+    using System;
+    using System.Dynamic;
+    using System.Globalization;
+    using System.IO;
+    using NUnit.Framework;
+
     internal class TrimPathApi : DynamicObject
     {
         /// <summary>

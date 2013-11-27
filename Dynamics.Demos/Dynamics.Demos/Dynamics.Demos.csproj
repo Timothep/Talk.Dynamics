@@ -92,7 +92,7 @@
     <Compile Include="Demo02_CalcDemo.cs" />
     <Compile Include="Demo04_DynamicObjectDemo.cs" />
     <Compile Include="Demo05_ExpandoObjectDemo.cs" />
-    <Compile Include="Demo01_DummyDemo.cs" />
+    <Content Include="Demo01_DummyDemo.txt" />
     <Compile Include="Demo06_Gemini.cs" />
     <Compile Include="Massive\Massive.cs" />
     <Compile Include="Massive\Massive.Oracle.cs" />

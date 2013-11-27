@@ -1,8 +1,8 @@
-﻿using IronPython.Hosting;
-using NUnit.Framework;
-
-namespace Dynamics.Demos
+﻿namespace Dynamics.Demos
 {
+    using IronPython.Hosting;
+    using NUnit.Framework;
+
     [TestFixture]
     internal class TestDemo3
     {

@@ -1,8 +1,8 @@
-﻿using NUnit.Framework;
-using Simple.Data;
-
-namespace Dynamics.Demos
+﻿namespace Dynamics.Demos
 {
+    using NUnit.Framework;
+    using Simple.Data;
+
     [TestFixture]
     internal class TestDemo10
     {

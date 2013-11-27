@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
-using System.Xml.Linq;
-using NUnit.Framework;
-
-namespace Dynamics.Demos
+﻿namespace Dynamics.Demos
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Dynamic;
+    using System.Linq;
+    using System.Xml.Linq;
+    using NUnit.Framework;
+
     /// <summary>
     ///   Demo heavily inspired by Alexandra Rusina's Blog post
     ///   http://blogs.msdn.com/b/csharpfaq/archive/2009/10/01/dynamic-in-c-4-0-introducing-the-expandoobject.aspx

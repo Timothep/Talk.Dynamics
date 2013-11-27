@@ -1,10 +1,8 @@
-﻿using System;
-using System.Dynamic;
-using Massive;
-using NUnit.Framework;
-
-namespace Dynamics.Demos
+﻿namespace Dynamics.Demos
 {
+    using System.Dynamic;
+    using NUnit.Framework;
+
     internal class MyDynamicObject : DynamicObject
     {
         public string MyTitle { get; set; }
