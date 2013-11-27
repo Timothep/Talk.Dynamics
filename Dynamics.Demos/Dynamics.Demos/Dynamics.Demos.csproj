@@ -88,7 +88,7 @@
   <ItemGroup>
     <Compile Include="Demo07_Nancy.cs" />
     <Compile Include="TalkDynamics.cs" />
-    <Compile Include="Demo09_SimpleData.cs" />
+    <Compile Include="Demo10_SimpleData.cs" />
     <Compile Include="Demo02_CalcDemo.cs" />
     <Compile Include="Demo04_DynamicObjectDemo.cs" />
     <Compile Include="Demo05_ExpandoObjectDemo.cs" />
@@ -104,7 +104,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Demo03_PythonDemo.cs" />
-    <Compile Include="Demo10_TrimPathApi.cs" />
+    <Compile Include="Demo09_TrimPathApi.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

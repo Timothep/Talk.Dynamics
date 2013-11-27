@@ -4,10 +4,10 @@ using Simple.Data;
 namespace Dynamics.Demos
 {
     [TestFixture]
-    internal class TestDemo09
+    internal class TestDemo10
     {
         [Test]
-        public void TestDemo09Album()
+        public void TestDemo10Album()
         {
             const string sqlConnString = @"Data Source=.\SQLEXPRESS;Initial Catalog=MvcMusicStore;Integrated Security=True";
             var db = Database.OpenConnection(sqlConnString);
