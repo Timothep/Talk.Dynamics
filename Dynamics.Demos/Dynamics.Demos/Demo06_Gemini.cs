@@ -6,10 +6,10 @@ using Oak;
 namespace Dynamics.Demos
 {
     [TestFixture]
-    internal class TestDemo7
+    internal class TestDemo6
     {
         [Test]
-        public void TestDemo7MembersOnTheFly()
+        public void TestDemo6MembersOnTheFly()
         {
             dynamic gemini = new Gemini(new { FirstName = "Jane", LastName = "Doe" });
             gemini.MiddleInitial = "J";
@@ -20,7 +20,7 @@ namespace Dynamics.Demos
         }
 
         [Test]
-        public void TestDemo7GeminiRespondsTo()
+        public void TestDemo6GeminiRespondsTo()
         {
             dynamic gemini = new Gemini(new {FirstName = "Jane", LastName = "Doe"});
 
@@ -29,7 +29,7 @@ namespace Dynamics.Demos
         }
 
         [Test]
-        public void TestDemo7Introspection()
+        public void TestDemo6Introspection()
         {
             dynamic gemini = new Gemini(new {FirstName = "Jane", LastName = "Doe"});
             gemini.SayHello = new Func<string>(() => "Hello");

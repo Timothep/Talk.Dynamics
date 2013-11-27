@@ -14,10 +14,10 @@ namespace Dynamics.Demos
     }
 
     [TestFixture]
-    internal class Demo9_Massive
+    internal class TestDemo8
     {
         [Test]
-        public void TestDemo9MassiveGetAll()
+        public void TestDemo8MassiveGetAll()
         {
             dynamic albumTable = new Albums();
             IEnumerable<dynamic> allAlbums = albumTable.All();
@@ -27,7 +27,7 @@ namespace Dynamics.Demos
         }
 
         [Test]
-        public void TestDemo9MassiveFind()
+        public void TestDemo8MassiveFind()
         {
             dynamic table = new Albums();
             IEnumerable<dynamic> albumsWithGenreId1 = table.FindBy(GenreId: 1);
