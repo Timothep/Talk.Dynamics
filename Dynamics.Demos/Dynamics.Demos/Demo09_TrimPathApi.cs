@@ -138,8 +138,8 @@
         [Test]
         public void TestDemo09ExtractFileNameWithoutExtension()
         {
-            MemberAccessWrapper fileNameWithExtension = trimPathApi.ExtractFileName(PathToTrim).WithoutExtension();
-            Assert.AreEqual("ruby", fileNameWithExtension.Value);
+            MemberAccessWrapper fileNameWithoutExtension = trimPathApi.ExtractFileName(PathToTrim).WithoutExtension();
+            Assert.AreEqual("ruby", fileNameWithoutExtension.Value);
         }
 
         [Test]

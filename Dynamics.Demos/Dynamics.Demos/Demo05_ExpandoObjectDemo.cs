@@ -17,9 +17,6 @@
         /// <summary>
         ///   Converts an ExpandoObject to its XML representation
         /// </summary>
-        /// <param name="node"></param>
-        /// <param name="nodeName"></param>
-        /// <returns></returns>
         public static XElement ExpandoToXml(dynamic node, String nodeName)
         {
             var xmlNode = new XElement(nodeName);
@@ -45,7 +42,7 @@
         {
             dynamic expando = new ExpandoObject();
 
-            expando.Title = "ExpandoObject Demo";
+            expando.Title = "ExpandoObject Demo"; // ~= expando["Title"] = "ExpandoObject Demo"
             expando.DoSomething = new Func<string>(() => "DidSomething");
 
             Assert.AreEqual("ExpandoObject Demo", expando.Title);

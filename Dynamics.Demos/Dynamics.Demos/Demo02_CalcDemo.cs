@@ -8,23 +8,28 @@
     ///   Demo heavily inspired by Scott Hanselmann's Blog post
     ///   http://www.hanselman.com/blog/C4AndTheDynamicKeywordWhirlwindTourAroundNET4AndVisualStudio2010Beta1.aspx
     /// </summary>
-    internal class Calculator
+    internal class Calculator : ICalc
     {
         public int Add(int x, int y)
         {
             return x + y;
         }
     }
+    internal interface ICalc
+    {
+        int Add(int x, int y);
+    }
 
     [TestFixture]
     public class TestDemo2
     {
         [Test]
-        public void TestDemo2Dynamic()
+        public void TestDemo2Static()
         {
-            dynamic calc = new Calculator();
+            Calculator calc = new Calculator();
             Assert.AreEqual(30, calc.Add(10, 20));
         }
+
 
         [Test]
         [Ignore]
@@ -32,8 +37,8 @@
         {
             object calc = new Calculator();
             //Assert.AreEqual(30, calc.Add(10, 20));
-            Assert.Fail();
         }
+
 
         [Test]
         public void TestDemo2Reflection()
@@ -50,10 +55,19 @@
             Assert.AreEqual(30, sum2);
         }
 
+
         [Test]
-        public void TestDemo2Static()
+        public void TestDemo2Itf()
         {
-            var calc = new Calculator();
+            ICalc calc = new Calculator();
+            Assert.AreEqual(30, calc.Add(10, 20));
+        }
+
+
+        [Test]
+        public void TestDemo2Dynamic()
+        {
+            dynamic calc = new Calculator();
             Assert.AreEqual(30, calc.Add(10, 20));
         }
     }

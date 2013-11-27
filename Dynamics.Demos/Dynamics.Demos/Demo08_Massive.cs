@@ -1,4 +1,6 @@
-﻿namespace Dynamics.Demos
+﻿using System.Diagnostics;
+
+namespace Dynamics.Demos
 {
     using System;
     using System.Collections.Generic;
@@ -23,7 +25,7 @@
             IEnumerable<dynamic> allAlbums = albumTable.All();
 
             foreach (var album in allAlbums)
-                Console.WriteLine(album.Title);
+                Debug.WriteLine(album.Title);
         }
 
         [Test]

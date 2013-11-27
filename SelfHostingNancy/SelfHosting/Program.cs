@@ -6,12 +6,12 @@ namespace SelfHostingNancy
 {
 	class Program
 	{
-		private const string serverUri = "http://localhost:1234";
+		private const string ServerUri = "http://localhost:1234";
 
 		static void Main(string[] args)
 		{
-			var host = new NancyHost(new Uri(serverUri));
-			Console.WriteLine("Listening on " + serverUri);
+			var host = new NancyHost(new Uri(ServerUri));
+			Console.WriteLine("Listening on " + ServerUri);
 			host.Start();
 			Console.ReadLine();
 			Console.WriteLine("You are about to close the application.");
@@ -26,12 +26,14 @@ namespace SelfHostingNancy
                             //Func<dynamic, dynamic>
 			Get["/"] = _ => "Hello World";
 
-            Get["/{page}"] = parameters => //Ex URI=www.mysite.com/about?lang=de
+            Get["/{page}/{subpage?}"] = parameters => //Ex URI=localhost:1234/about/mickeyMouse
                 {
                     //Input
-                    var page = parameters.page; //"about"
-                    var language = parameters.lang; //"de"
-
+                    var pageBody =  "You are on the '" + parameters.page + "' page";
+                    if (parameters.subpage != null)
+                        pageBody += " and the subpage is '" + parameters.subpage + "'.";
+                    //return pageBody;
+                    
                     //Output
                     return HttpStatusCode.OK;
                     //return "Hello World";
