@@ -298,14 +298,17 @@ namespace Massive {
             return result;
         }
         public virtual string TableName { get; set; }
+
         /// <summary>
         /// Returns all records complying with the passed-in WHERE clause and arguments, 
         /// ordered as specified, limited (TOP) by limit.
         /// </summary>
-        public virtual IEnumerable<dynamic> All(string where = "", string orderBy = "", int limit = 0, string columns = "*", params object[] args) {
+        public virtual IEnumerable<dynamic> All(string where = "", string orderBy = "", int limit = 0, string columns = "*", params object[] args) 
+        {
             string sql = BuildSelect(where, orderBy, limit);
             return Query(string.Format(sql, columns, TableName), args);
         }
+
         private static string BuildSelect(string where, string orderBy, int limit) {
             string sql = limit > 0 ? "SELECT TOP " + limit + " {0} FROM {1} " : "SELECT {0} FROM {1} ";
             if (!string.IsNullOrEmpty(where))
@@ -592,15 +595,18 @@ namespace Massive {
         /// <summary>
         /// A helpful query tool
         /// </summary>
-        public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result) {
+        public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result) 
+        {
             //parse the method
             var constraints = new List<string>();
             var counter = 0;
             var info = binder.CallInfo;
             // accepting named args only... SKEET!
-            if (info.ArgumentNames.Count != args.Length) {
+            if (info.ArgumentNames.Count != args.Length) 
+            {
                 throw new InvalidOperationException("Please use named arguments for this type of query - the column name, orderby, columns, etc");
             }
+
             //first should be "FindBy, Last, Single, First"
             var op = binder.Name;
             var columns = " * ";
@@ -610,9 +616,10 @@ namespace Massive {
             var whereArgs = new List<object>();
 
             //loop the named args - see if we have order, columns and constraints
-            if (info.ArgumentNames.Count > 0) {
-
-                for (int i = 0; i < args.Length; i++) {
+            if (info.ArgumentNames.Count > 0) 
+            {
+                for (int i = 0; i < args.Length; i++) 
+                {
                     var name = info.ArgumentNames[i].ToLower();
                     switch (name) {
                         case "orderby":

@@ -6,10 +6,7 @@
 
     public class Albums : DynamicModel
     {
-        public Albums()
-            : base("SqlServer", tableName: "Album", primaryKeyField: "AlbumId")
-        {
-        }
+        public Albums(): base("SqlServer", tableName: "Album", primaryKeyField: "AlbumId") { }
     }
 
     [TestFixture]
