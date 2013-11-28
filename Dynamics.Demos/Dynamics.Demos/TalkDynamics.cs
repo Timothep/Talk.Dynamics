@@ -11,6 +11,8 @@
 
             var dynamischUndGefährlich = thisTalk.Dynamics("in").FreierWildbahn();
 
+            dynamischUndGefährlich.Are.Those.Dynamics.Really().So.Bad("?");
+
             dynamischUndGefährlich.GedankenSpiel("GO!");
         }
     }

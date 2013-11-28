@@ -1,8 +1,5 @@
-﻿using System.Diagnostics;
-
-namespace Dynamics.Demos
+﻿namespace Dynamics.Demos
 {
-    using System;
     using System.Collections.Generic;
     using Massive;
     using NUnit.Framework;
