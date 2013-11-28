@@ -25,7 +25,9 @@ namespace Dynamics.Demos
             IEnumerable<dynamic> allAlbums = albumTable.All();
 
             foreach (var album in allAlbums)
-                Debug.WriteLine(album.Title);
+            {
+                Assert.IsNotNullOrEmpty(album.Title);
+            }
         }
 
         [Test]
