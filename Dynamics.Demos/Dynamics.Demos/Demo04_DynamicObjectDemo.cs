@@ -30,6 +30,7 @@
     internal class TestDemo4
     {
         [Test]
+        [Ignore]
         public void TestDemo4DynamicvsDynamicObject()
         {
             //"dynamic" allows me to write anything after the "."

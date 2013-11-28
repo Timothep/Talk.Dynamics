@@ -26,7 +26,7 @@ namespace SelfHostingNancy
                             //Func<dynamic, dynamic>
 			Get["/"] = input => "Hello World";
 
-            Get["/{page}/{subpage?}"] = parameters => //Ex URI=localhost:1234/about/mickeyMouse
+            Get["/{page}/{subpage?}"] = parameters => //Ex URI=localhost:1234/about/contact
                 {
                     //Input
                     var pageBody =  "You are on the '" + parameters.page + "' page";
