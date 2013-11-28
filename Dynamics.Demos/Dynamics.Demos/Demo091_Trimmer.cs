@@ -1,12 +1,11 @@
-﻿namespace Dynamics.Demos
-{
-    using System;
-    using System.Dynamic;
-    using System.Globalization;
-    using System.IO;
-    using NUnit.Framework;
+﻿using System;
+using System.Dynamic;
+using System.Globalization;
+using System.IO;
 
-    internal class TrimPathApi : DynamicObject
+namespace Dynamics.Demos
+{
+    internal class Trimmer : DynamicObject
     {
         /// <summary>
         ///   Function handling the first call on the dynamic object
@@ -99,61 +98,6 @@
         {
             result = new MemberAccessWrapper(binder.Name, Value);
             return true;
-        }
-    }
-
-    [TestFixture]
-    public class TestsDemo09
-    {
-        private const string PathToTrim = @"C:\Dev\Ruby193\bin\ruby.exe";
-        private dynamic trimPathApi;
-
-        [TestFixtureSetUp]
-        public void TestsSetup()
-        {
-            trimPathApi = new TrimPathApi();
-        }
-
-        [Test]
-        public void TestDemo09ExtractDriveLetter()
-        {
-            MemberAccessWrapper driveLetter = trimPathApi.ExtractDriveLetter(PathToTrim);
-            Assert.AreEqual("C", driveLetter.Value);
-        }
-
-        [Test]
-        public void TestDemo09ExtractFileExtension()
-        {
-            MemberAccessWrapper fileExtension = trimPathApi.ExtractFileExtension(PathToTrim);
-            Assert.AreEqual(".exe", fileExtension.Value);
-        }
-
-        [Test]
-        public void TestDemo09ExtractFileName()
-        {
-            MemberAccessWrapper fileName = trimPathApi.ExtractFileName(PathToTrim);
-            Assert.AreEqual("ruby.exe", fileName.Value);
-        }
-
-        [Test]
-        public void TestDemo09ExtractFileNameWithoutExtension()
-        {
-            MemberAccessWrapper fileNameWithoutExtension = trimPathApi.ExtractFileName(PathToTrim).WithoutExtension();
-            Assert.AreEqual("ruby", fileNameWithoutExtension.Value);
-        }
-
-        [Test]
-        public void TestDemo09ExtractPath()
-        {
-            MemberAccessWrapper path = trimPathApi.ExtractPath(PathToTrim);
-            Assert.AreEqual(@"C:\Dev\Ruby193\bin", path.Value);
-        }
-
-        [Test]
-        public void TestDemo09ExtractPathRoot()
-        {
-            MemberAccessWrapper pathRoot = trimPathApi.ExtractPathRoot(PathToTrim);
-            Assert.AreEqual(@"C:\", pathRoot.Value);
         }
     }
 }

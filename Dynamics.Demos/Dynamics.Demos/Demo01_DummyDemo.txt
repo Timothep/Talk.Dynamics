@@ -11,16 +11,6 @@
             //theAnswer.ToUpper();
         }
 
-
-
-
-
-
-
-
-
-
-
         public static void DynamicsToTheRescue()
         {
             dynamic lang = "C#";
