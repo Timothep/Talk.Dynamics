@@ -7,11 +7,11 @@
             thisGuy.Name("Tim Bourguignon")
                    .Aka("Unsere Franzose")
                    .Employer("Mathema")
-                   .Functions("TechLead", "SeniorDev", "Consultant", "Trainer").AndCo();
+                   .Functions(new [] {"TechLead", "SeniorDev", "Consultant", "Trainer" });
 
-            var dynamicsInFreierWildbahn = thisTalk.Dynamisch().Und.Gefährlich();
+            var dynamischUndGefährlich = thisTalk.Dynamics("in").FreierWildbahn();
 
-            dynamicsInFreierWildbahn.GedankenSpiel("GO!");
+            dynamischUndGefährlich.GedankenSpiel("GO!");
         }
     }
 }
