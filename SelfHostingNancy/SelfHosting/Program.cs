@@ -24,7 +24,7 @@ namespace SelfHostingNancy
 		public MainModule()
 		{
                             //Func<dynamic, dynamic>
-			Get["/"] = _ => "Hello World";
+			Get["/"] = input => "Hello World";
 
             Get["/{page}/{subpage?}"] = parameters => //Ex URI=localhost:1234/about/mickeyMouse
                 {
@@ -32,10 +32,10 @@ namespace SelfHostingNancy
                     var pageBody =  "You are on the '" + parameters.page + "' page";
                     if (parameters.subpage != null)
                         pageBody += " and the subpage is '" + parameters.subpage + "'.";
-                    //return pageBody;
+                    return pageBody;
                     
                     //Output
-                    return HttpStatusCode.OK;
+                    //return HttpStatusCode.OK;
                     //return "Hello World";
                     //return View["myView"];
                     //return Response.AsRedirect("/");

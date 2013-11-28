@@ -58,7 +58,7 @@
                     new XElement("Name", "Patrick Hines"),
                     new XElement("Phone", "206-555-0144"),
                     new XElement("Address",
-                        new XElement("Street1", "123 Main St"),
+                        new XElement("Street", "123 Main St"),
                         new XElement("City", "Mercer Island"),
                         new XElement("State", "WA"),
                         new XElement("Postal", "68042")

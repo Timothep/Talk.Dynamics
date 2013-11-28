@@ -2,7 +2,8 @@
 {
     internal class DummyDemo
     {
-        public static void WillItCompile()
+
+        public void WillItCompile()
         {
             string lang = "C#";
             lang++;
@@ -11,7 +12,12 @@
             theAnswer.ToUpper();
         }
 
-        public static void DynamicsToTheRescue()
+
+
+
+
+
+        public void DynamicsToTheRescue()
         {
             dynamic lang = "C#";
             lang++;
@@ -20,9 +26,19 @@
             theAnswer.ToUpper();
         }
 
-        public static void WTF(dynamic magic)
+
+
+
+
+
+
+        public void WTF(dynamic magic)
         {
             magic.WhatTheFuck().HowDoesThisWork();
         }
+
+
+
+
     }
 }

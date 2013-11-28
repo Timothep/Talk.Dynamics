@@ -32,7 +32,6 @@
 
 
         [Test]
-        [Ignore]
         public void TestDemo2Object()
         {
             object calc = new Calculator();
@@ -45,14 +44,14 @@
         {
             object reflectionCalc = new Calculator();
             var calcType = reflectionCalc.GetType();
-            var res = calcType.InvokeMember(
+            object res = calcType.InvokeMember(
                 "Add",
                 BindingFlags.InvokeMethod,
                 null,
                 Activator.CreateInstance(calcType),
                 new object[] {10, 20});
-            var sum2 = Convert.ToInt32(res);
-            Assert.AreEqual(30, sum2);
+            int sum = Convert.ToInt32(res);
+            Assert.AreEqual(30, sum);
         }
 
 

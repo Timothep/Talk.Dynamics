@@ -52,15 +52,18 @@
         public void TestDemo4TrySetMember()
         {
             dynamic myDynamicObject = new TimsDynamicObject();
-            myDynamicObject.Title = "DynamicObjectDemo";
-            Assert.AreEqual("DynamicObjectDemo", myDynamicObject.SomeProperty);
+            myDynamicObject.Title = "Set DynamicObject Demo";
+            Assert.AreEqual("Set DynamicObject Demo", myDynamicObject.SomeProperty);
         }
 
         [Test]
         public void TestDemo4TryGetMember()
         {
-            dynamic myDynamicObject = new TimsDynamicObject { SomeProperty = "DynamicObjectDemo" };
-            Assert.AreEqual("DynamicObjectDemo", myDynamicObject.Title);
+            dynamic myDynamicObject = new TimsDynamicObject
+                {
+                    SomeProperty = "Get DynamicObject Demo"
+                };
+            Assert.AreEqual("Get DynamicObject Demo", myDynamicObject.Title);
         }
     }
 }
