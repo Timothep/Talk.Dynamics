@@ -11,3 +11,5 @@ This material is/was used in various forms at different talks/conferences:
 This talk was also written as an article (in German):
 
 * [KaffeeKlatsch](http://www.bookware.de/kaffeeklatsch/archiv/KaffeeKlatsch-2013-08.pdf), "Dynamisch und Gefährlich?", August 2013
+
+The presentation can be viewed online on [Slideshare](http://www.slideshare.net/TimBourguignon/c-dynamics-in-the-wild).
