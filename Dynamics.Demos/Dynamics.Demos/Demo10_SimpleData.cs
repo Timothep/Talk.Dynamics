@@ -13,11 +13,11 @@
                 @"Data Source=.\SQLEXPRESS;Initial Catalog=MvcMusicStore;Integrated Security=True";
             dynamic db = Database.OpenConnection(sqlConnString);
 
-            var albums = db.albums //FROM Album
-                            .FindAllByGenreId(1) //SELECT * WHERE GenreId = 1
+            var albums = db.albums											//FROM Album
+                            .FindAllByGenreId(1)				//SELECT * WHERE GenreId = 1
                             .OrderByAlbumIdDescending() //ORDER BY AlbumId DESC
-                            .Take(10).Skip(10) //Paging
-                            .ToList(); //Enumerate to fire the query
+														.Skip(10).Take(10)					//Paging
+                            .ToList();									//Enumerate to fire the query
 
             Assert.AreEqual(10, albums.Count);
         }

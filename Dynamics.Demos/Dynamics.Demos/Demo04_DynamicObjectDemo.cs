@@ -34,9 +34,9 @@
         public void TestDemo4DynamicvsDynamicObject()
         {
             //"dynamic" allows me to write anything after the "."
-            dynamic notDynamicString = "";
-            //notDynamicString.SomeProperty = "42";
-            //notDynamicString.Title = "42";
+            dynamic mystring = "";
+						//mystring.SomeProperty = "42";
+						//mystring.Title = "42";
 
             //DynamicObject can call "real properties" like a "normal object"
             TimsDynamicObject dynamicObject = new TimsDynamicObject();

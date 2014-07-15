@@ -33,7 +33,6 @@
         public void TestDemo6Introspection()
         {
             dynamic gemini = new Gemini(new {FirstName = "Jane", LastName = "Doe"});
-            gemini.SayHello = new Func<string>(() => "Hello");
             
             IDictionary<string, object> properties = gemini.HashOfProperties();
             Assert.AreEqual(2, properties.Count);

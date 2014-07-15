@@ -11,8 +11,8 @@
         {
             var pythonRuntime = Python.CreateRuntime();
             dynamic pythonScript = pythonRuntime.UseFile("Demo03_script.py");
-            var result = pythonScript.add(100, 200);
-            Assert.AreEqual(300, result);
+            var result = pythonScript.add(10, 20);
+            Assert.AreEqual(30, result);
         }
     }
 }
