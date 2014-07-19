@@ -1,4 +1,6 @@
-﻿namespace Dynamics.Demos
+﻿using Microsoft.CSharp.RuntimeBinder;
+
+namespace Dynamics.Demos
 {
     using NUnit.Framework;
 
@@ -20,7 +22,7 @@
         }
 
         [Test]
-        [Ignore]
+				[ExpectedException(typeof(RuntimeBinderException))]
         public void TestDemo09_EasyTrimmer_ExtractFileNameWithoutExtension()
         {
             var fileNameWithoutExtension = easyTrimmer.ExtractFileName(PathToTrim).WithoutExtension();
@@ -60,8 +62,8 @@
         [Test]
         public void TestDemo09ExtractFileNameWithoutExtension()
         {
-            Wrapper fileNameWithoutExtension = trimmer.ExtractFileName(PathToTrim).WithoutExtension();
-            Assert.AreEqual("ruby", fileNameWithoutExtension.Value);
+            Wrapper fileNameWithoutExtension = trimmer.ExtractFileName(PathToTrim).WithoutExtension().GetFirstLetter();
+            Assert.AreEqual("r", fileNameWithoutExtension.Value);
         }
 
         [Test]

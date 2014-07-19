@@ -65,6 +65,9 @@ namespace Dynamics.Demos
             if (how.StartsWith("LetterOnly"))
                 return new Wrapper(what[0].ToString(CultureInfo.InvariantCulture));
 
+            if (how == "GetFirstLetter" )
+                return new Wrapper(what[0].ToString(CultureInfo.InvariantCulture));
+
             throw new Exception("Parsing failed");
         }
     }

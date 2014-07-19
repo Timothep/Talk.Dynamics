@@ -32,7 +32,7 @@ namespace SelfHostingNancy
                     var pageBody =  "You are on the '" + parameters.page + "' page";
                     if (parameters.subpage != null)
                         pageBody += " and the subpage is '" + parameters.subpage + "'.";
-                    return pageBody;
+                    //return pageBody;
                     
                     //Output
                     //return HttpStatusCode.OK;

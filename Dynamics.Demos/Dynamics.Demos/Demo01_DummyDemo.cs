@@ -5,11 +5,11 @@
 
         public void WillItCompile()
         {
-            string lang = "C#";
-            lang++;
-            
-            int theAnswer = 42;
-            theAnswer.ToUpper();
+            //string lang = "C#";
+            //lang++;
+            //
+            //int theAnswer = 42;
+            //theAnswer.ToUpper();
         }
 
 
